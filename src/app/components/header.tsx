@@ -3,7 +3,7 @@ import Image from 'next/image';
 export default function Header() {
     return (
 
-        <header className="bg-blue-500 h-[76px] pl-[27px] pr-[31px] w-full shrink-0 border-b border-gray-200 flex flex-row items-center">
+        <header className="bg-white h-[76px] pl-[27px] pr-[31px] w-full shrink-0 border-b border-gray-200 flex flex-row items-center">
             {/* Group 1: Logo & Menu */}
             <div className="flex flex-row basis-[632px] shrink">
                 <Image
@@ -37,3 +37,6 @@ export default function Header() {
 
     );
 }
+
+
+// bg-blue-500
