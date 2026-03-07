@@ -1,18 +1,16 @@
 import Image from 'next/image';
-
+import GridItemVideo from "./grid-item-video"
+import GridItemDetails from "./grid-item-details"
 
 export default function GridItem() {
     return (
 
-        <div className="bg-green-300 aspect-video rounded-xl">test</div>
-
+        <div>
+            <GridItemVideo />
+            <GridItemDetails />
+        </div>
 
     );
 }
 
-// Replace code above with this
 
-{/* <div>
-    <GridItemVideo />
-    <GridItemDetails />
-</div> */}
