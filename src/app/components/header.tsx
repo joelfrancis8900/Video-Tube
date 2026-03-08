@@ -9,10 +9,10 @@ export default function Header() {
                 <Image
                     src="/icons/menu-svgrepo-com-space-removed.svg"
                     alt="Menu"
-                    width={24}
-                    height={24}
+                    width={18}
+                    height={18}
                 />
-                <div className="ml-[27px]">VideoTube</div>
+                <div className="ml-[27px] text-2xl text-red-600">VideoTube</div>
             </div>
 
             {/* Group 2: Search Bar */}
@@ -20,16 +20,21 @@ export default function Header() {
                 <input
                     type="search"
                     placeholder="Search..."
-                    className="flex-grow p-2 border rounded-md"
+                    className="flex-grow p-2 border border-gray-300 rounded-l-[21px] w-[604px] focus:outline-none focus:border-blue-500"
                 />
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-md">
-                    Search
+                <button className="px-4 py-2 bg-blue-600 border-gray-300 transition-colors hover:bg-gray-50 text-white rounded-r-[21px]">
+                    <Image
+                        src="/icons/search-outline-svgrepo-com-space-removed.svg"
+                        alt="Menu"
+                        width={18}
+                        height={18}
+                    />
                 </button>
             </div>
 
             {/* Group 3: Sign In */}
             <div className="flex flex-row justify-end grow">
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-md flex flex-nowrap flex-row whitespace-nowrap">
+                <button className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white transition-colors rounded-full flex flex-nowrap flex-row whitespace-nowrap">
                     Sign in
                 </button>
             </div>
