@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export default function Header() {
+export default function Header({ onToggle }: { onToggle: () => void }) {
     return (
 
         <header className="bg-white h-[76px] pl-[27px] pr-[31px] w-full shrink-0 border-b border-gray-200 flex flex-row items-center justify-between">
@@ -11,6 +11,7 @@ export default function Header() {
                     alt="Menu"
                     width={18}
                     height={18}
+                    onClick={onToggle}
                 />
                 <div className="ml-[27px] text-2xl text-red-600">VideoTube</div>
             </div>
