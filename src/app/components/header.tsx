@@ -3,9 +3,9 @@ import Image from 'next/image';
 export default function Header() {
     return (
 
-        <header className="bg-white h-[76px] pl-[27px] pr-[31px] w-full shrink-0 border-b border-gray-200 flex flex-row items-center">
+        <header className="bg-white h-[76px] pl-[27px] pr-[31px] w-full shrink-0 border-b border-gray-200 flex flex-row items-center justify-between">
             {/* Group 1: Logo & Menu */}
-            <div className="flex flex-row basis-[632px] shrink">
+            <div className="flex flex-row items-center shrink">
                 <Image
                     src="/icons/menu-svgrepo-com-space-removed.svg"
                     alt="Menu"
@@ -16,13 +16,13 @@ export default function Header() {
             </div>
 
             {/* Group 2: Search Bar */}
-            <div className="flex flex-row basis-[672px] justify-start">
+            <div className="flex flex-row flex-grow max-w-[672px] justify-center">
                 <input
                     type="search"
-                    placeholder="Search..."
-                    className="flex-grow p-2 border border-gray-300 rounded-l-[21px] w-[604px] focus:outline-none focus:border-blue-500"
+                    placeholder="Search"
+                    className="w-full p-2 border border-gray-300 rounded-l-[21px] focus:outline-none focus:border-blue-500"
                 />
-                <button className="px-4 py-2 bg-blue-600 border-gray-300 transition-colors hover:bg-gray-50 text-white rounded-r-[21px]">
+                <button className="px-4 py-2 w-[68px] flex flex-row justify-center items-center border-gray-300 transition-colors border-t border-r border-b hover:bg-gray-50 text-white rounded-r-[21px]">
                     <Image
                         src="/icons/search-outline-svgrepo-com-space-removed.svg"
                         alt="Menu"
@@ -33,7 +33,7 @@ export default function Header() {
             </div>
 
             {/* Group 3: Sign In */}
-            <div className="flex flex-row justify-end grow">
+            <div className="flex flex-row justify-end items-center">
                 <button className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white transition-colors rounded-full flex flex-nowrap flex-row whitespace-nowrap">
                     Sign in
                 </button>
@@ -45,3 +45,5 @@ export default function Header() {
 
 
 // bg-blue-500
+// left header | basis-[632px]
+// basis-[672px] | middle header
