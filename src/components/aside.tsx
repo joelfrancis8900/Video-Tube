@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 
 
-export default function Aside({ isSemiCollapsed, isHidden }: { isSemiCollapsed: boolean, isHidden: boolean }) {
+export default function Aside({ isSemiCollapsed }: { isSemiCollapsed: boolean }) {
 
     const itemClass = `flex cursor-pointer rounded-lg pt-[11px] pb-[11px] transition-all transition-colors duration-300 hover:bg-gray-100 ${isSemiCollapsed
         ? 'flex-col items-center justify-center gap-1 px-0' // Collapsed: No left padding
@@ -15,7 +15,6 @@ export default function Aside({ isSemiCollapsed, isHidden }: { isSemiCollapsed: 
 
         // New sidebar:
         <aside className={`
-            ${isHidden ? 'hidden' : 'flex flex-col'} 
             ${isSemiCollapsed ? 'w-20' : 'w-[240px]'} bg-white shrink-0 border-r border-gray-200 transition-all duration-300`}>
             <div className="pb-[12px] pt-[10px] border-gray-200 border-b-[1px] flex flex-col gap-[1px]">
                 {/* previous classes for image second parent div */}

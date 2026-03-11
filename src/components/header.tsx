@@ -5,14 +5,19 @@ export default function Header({ onToggle }: { onToggle: () => void }) {
 
         <header className="bg-white h-[76px] pl-[27px] pr-[31px] w-full shrink-0 border-b border-gray-200 flex flex-row items-center justify-between">
             {/* Group 1: Logo & Menu */}
-            <div className="flex flex-row items-center shrink">
-                <Image
-                    src="/icons/menu-svgrepo-com-space-removed.svg"
-                    alt="Menu"
-                    width={18}
-                    height={18}
+            <div className="flex flex-row items-center shrink-0">
+                <button
                     onClick={onToggle}
-                />
+                    className="p-2 -ml-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                    <Image
+                        src="/icons/menu-svgrepo-com-space-removed.svg" // Use your menu/hamburger icon here
+                        alt="Close menu"
+                        width={18}
+                        height={18}
+                    />
+                </button>
+
                 <div className="ml-[27px] text-2xl text-red-600">VideoTube</div>
             </div>
 
@@ -45,6 +50,15 @@ export default function Header({ onToggle }: { onToggle: () => void }) {
 }
 
 
+
+// Previous menu button:
+{/* <Image
+    src="/icons/menu-svgrepo-com-space-removed.svg"
+    alt="Menu"
+    width={18}
+    height={18}
+    onClick={onToggle}
+/> */}
 // bg-blue-500
 // left header | basis-[632px]
 // basis-[672px] | middle header
