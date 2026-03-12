@@ -18,7 +18,7 @@ export default function Header({ onToggle }: { onToggle: () => void }) {
                     />
                 </button>
 
-                <div className="ml-[27px] text-2xl text-red-600">VideoTube</div>
+                <div className=" pl-2 sm:pl-6.75 text-base sm:text-2xl text-red-600">VideoTube</div>
             </div>
 
             {/* Group 2: Search Bar */}
