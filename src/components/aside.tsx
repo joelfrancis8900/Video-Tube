@@ -15,8 +15,8 @@ export default function Aside({ isSemiCollapsed }: { isSemiCollapsed: boolean })
 
         // New sidebar:
         <aside className={`
-            ${isSemiCollapsed ? 'w-20' : 'w-[240px]'} bg-white shrink-0 border-r border-gray-200 transition-all duration-300`}>
-            <div className="pb-[12px] pt-[10px] border-gray-200 border-b-[1px] flex flex-col gap-[1px]">
+            ${isSemiCollapsed ? 'w-20' : 'w-60'} bg-white shrink-0 border-r h-full border-gray-200 transition-all duration-300`}>
+            <div className="pb-3 pt-2.5 border-gray-200 border-b flex flex-col gap-px">
                 {/* previous classes for image second parent div */}
                 <div className={itemClass}>
                     <div>
@@ -69,7 +69,7 @@ export default function Aside({ isSemiCollapsed }: { isSemiCollapsed: boolean })
 
 
 
-            <div className="pb-[12px] pt-[10px] border-gray-200  flex flex-col gap-[1px]">
+            <div className="pb-3 pt-2.5 border-gray-200  flex flex-col gap-px">
 
                 <div className={itemClass}>
                     <div>

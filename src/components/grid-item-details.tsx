@@ -5,10 +5,10 @@ export default function GridItemDetails() {
     return (
 
         <div className="flex flex-row  min-h-0">
-            <div className='bg-gray-200 h-[36px] w-[36px] rounded-[18px] mt-[12px]'></div>
-            <div className='pt-[17px] pl-[13px] flex flex-col'>
-                <div className='truncate mb-[10px] leading-none'>Title</div>
-                <div className='truncate mb-[6px] leading-none'>Channel</div>
+            <div className='bg-gray-200 h-9 w-9 rounded-[18px] mt-3'></div>
+            <div className='pt-4.25 pl-3.25 flex flex-col'>
+                <div className='truncate mb-2.5 leading-none'>Title</div>
+                <div className='truncate mb-1.5 leading-none'>Channel</div>
                 <div className='flex flex-row'>
                     <div className='truncate leading-none'>Views</div>
                     {/* <div>Dot icon</div> */}
