@@ -15,8 +15,8 @@ export default function MobileDrawer({ isOpen, onClose }: { isOpen: boolean; onC
                 onClick={onClose}
             />
 
-            <aside className={`absolute top-0 left-0 h-full w-[240px] bg-white border-r border-gray-200 shadow-xl transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <div className="flex items-center h-[76px] px-[27px] border-b border-gray-200">
+            <aside className={`absolute top-0 left-0 h-full w-60 bg-white border-r border-gray-200 shadow-xl transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+                <div className="flex items-center h-19 px-6.75 border-b border-gray-200">
                     <button
                         onClick={onClose}
                         className="p-2 -ml-2 hover:bg-gray-100 rounded-full transition-colors"
