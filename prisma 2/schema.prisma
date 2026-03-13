@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  url      = env("DATABASE_URL")
 }
 
 datasource db {
@@ -17,7 +16,7 @@ model Video {
   id          String   @id @default(uuid())
   title       String
   description String?
-  videoUrl         String
+  videoUrl    String
   userId      String
   createdAt   DateTime @default(now())
   comments    Comment[]

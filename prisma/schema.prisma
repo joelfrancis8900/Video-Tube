@@ -5,7 +5,9 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  
+  output   = "../src/generated/client"
 }
 
 datasource db {
@@ -16,7 +18,7 @@ model Video {
   id          String   @id @default(uuid())
   title       String
   description String?
-  videoUrl    String
+  videoUrl         String
   userId      String
   createdAt   DateTime @default(now())
   comments    Comment[]
