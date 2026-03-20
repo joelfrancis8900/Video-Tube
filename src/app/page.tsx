@@ -62,14 +62,3 @@ export default function Home() {
 
   )
 }
-
-// Original layout:
-{/* <div className="flex flex-col h-screen w-full overflow-hidden">
-
-      <Header onToggle={handleMenuToggle} />
-      <div className="flex flex-1 w-full overflow-hidden">
-        <Aside isSemiCollapsed={isSemiCollapsed}
-          isHidden={isSidebarHidden} />
-        <Main onHideSidebar={() => setIsSidebarHidden(!isSidebarHidden)} />
-      </div>
-    </div> */}
