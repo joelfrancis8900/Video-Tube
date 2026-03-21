@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react';
 
 import styles from './page.module.css'
 import Image from 'next/image';
-import Header from '../components/header';
-import Aside from "../components/aside"
-import Main from "../components/main"
-import MobileDrawer from "../components/mobile-drawer";
+import Header from '../components/homePage/header';
+import Aside from "../components/homePage/aside"
+import Main from "../components/homePage/main"
+import MobileDrawer from "../components/homePage/mobile-drawer";
 
 export default function Home() {
   const [isSemiCollapsed, setIsSemiCollapsed] = useState(false);
