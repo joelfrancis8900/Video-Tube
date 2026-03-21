@@ -19,3 +19,17 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: 'Failed to save' }, { status: 500 });
     }
 }
+
+
+
+export async function GET() {
+    try {
+        const videos = await db.video.findMany({
+            orderBy: { createdAt: 'desc' },
+        });
+
+        return NextResponse.json(videos);
+    } catch (error) {
+        return NextResponse.json({ error: 'Failed to fetch' }, { status: 500 });
+    }
+}

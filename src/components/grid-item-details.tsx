@@ -1,13 +1,13 @@
 import Image from 'next/image';
 
 
-export default function GridItemDetails() {
+export default function GridItemDetails({ video }: any) {
     return (
 
         <div className="flex flex-row  min-h-0">
             <div className='bg-gray-200 h-9 w-9 rounded-[18px] mt-3'></div>
             <div className='pt-4.25 pl-3.25 flex flex-col'>
-                <div className='truncate mb-2.5 leading-none'>Title</div>
+                <div className='truncate mb-2.5 leading-none'>{video.title}</div>
                 <div className='truncate mb-1.5 leading-none'>Channel</div>
                 <div className='flex flex-row'>
                     <div className='truncate leading-none'>Views</div>
