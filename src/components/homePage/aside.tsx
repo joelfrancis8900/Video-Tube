@@ -1,6 +1,8 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
+import Link from 'next/link';
+
 
 
 
@@ -83,10 +85,53 @@ export default function Aside({ isSemiCollapsed }: { isSemiCollapsed: boolean })
                     <div className={isSemiCollapsed ? 'text-[12px] text-center leading-tight' : 'text-base'}>
                         Settings
                     </div>
+                </div>
 
+                <div className={itemClass}>
+                    <div>
+                        <Image
+                            src="/icons/settings-gear-svgrepo-com.svg"
+                            alt="Settings icon"
+                            width={18}
+                            height={18}
+                        />
+                    </div>
+                    <div className={isSemiCollapsed ? 'text-[12px] text-center leading-tight' : 'text-base'}>
+                        Temporary links below
+                    </div>
+                </div>
+
+                <div className={itemClass}>
+                    <div>
+                        <Image
+                            src="/icons/settings-gear-svgrepo-com.svg"
+                            alt="Settings icon"
+                            width={18}
+                            height={18}
+                        />
+                    </div>
+                    <div className={isSemiCollapsed ? 'text-[12px] text-center leading-tight' : 'text-base'}>
+                        <Link href="upload">Upload page</Link>
+                    </div>
+                </div>
+
+                <div className={itemClass}>
+                    <div>
+                        <Image
+                            src="/icons/settings-gear-svgrepo-com.svg"
+                            alt="Settings icon"
+                            width={18}
+                            height={18}
+                        />
+                    </div>
+                    <div className={isSemiCollapsed ? 'text-[12px] text-center leading-tight' : 'text-base'}>
+                        <Link href="all-videos">All videos page</Link>
+                    </div>
                 </div>
 
             </div>
+
+
 
         </aside>
     );
