@@ -4,7 +4,7 @@ import Image from 'next/image';
 export default function MobileDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
     return (
         /* The container handles visibility and z-index */
-        <div className={`fixed inset-0 z-[100] sm:hidden transition-all duration-300 ${isOpen
+        <div className={`fixed inset-0 z-100 sm:hidden transition-all duration-300 ${isOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
             }`}>
@@ -28,15 +28,15 @@ export default function MobileDrawer({ isOpen, onClose }: { isOpen: boolean; onC
                             height={18}
                         />
                     </button>
-                    <div className="ml-[27px] text-2xl text-red-600">VideoTube</div>
+                    <div className="ml-6.75 text-2xl text-red-600">VideoTube</div>
                 </div>
 
 
 
 
-                <div className="pb-[12px] pt-[10px] border-gray-200 border-b-[1px] flex flex-col gap-[1px]">
+                <div className="pb-3 pt-2.5 border-gray-200 border-b flex flex-col gap-px">
                     {/* previous classes for image second parent div */}
-                    <div className={'flex cursor-pointer rounded-lg pt-[11px] pb-[11px] transition-all transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-[25px] pl-[25px]'}>
+                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-all transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
                         <div>
                             <Image
                                 src="/icons/icons8-home-no-white-space.svg"
@@ -51,7 +51,7 @@ export default function MobileDrawer({ isOpen, onClose }: { isOpen: boolean; onC
 
                     </div>
 
-                    <div className={'flex cursor-pointer rounded-lg pt-[11px] pb-[11px] transition-all transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-[25px] pl-[25px]'}>
+                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-all transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
                         <div>
                             <Image
                                 src="/icons/notification-bell-svgrepo-com-space-removed.svg"
@@ -66,7 +66,7 @@ export default function MobileDrawer({ isOpen, onClose }: { isOpen: boolean; onC
 
                     </div>
 
-                    <div className={'flex cursor-pointer rounded-lg pt-[11px] pb-[11px] transition-all transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-[25px] pl-[25px]'}>
+                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-all transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
                         <div>
                             <Image
                                 src="/icons/icons8-plus.svg"
@@ -87,9 +87,9 @@ export default function MobileDrawer({ isOpen, onClose }: { isOpen: boolean; onC
 
 
 
-                <div className="pb-[12px] pt-[10px] border-gray-200  flex flex-col gap-[1px]">
+                <div className="pb-3 pt-2.5 border-gray-200  flex flex-col gap-px">
 
-                    <div className={'flex cursor-pointer rounded-lg pt-[11px] pb-[11px] transition-all transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-[25px] pl-[25px]'}>
+                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-all transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
                         <div>
                             <Image
                                 src="/icons/settings-gear-svgrepo-com.svg"
