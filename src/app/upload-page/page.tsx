@@ -6,7 +6,7 @@ import Main from '@/components/uploadPage/main';
 
 export default function UploadPage() {
 
-    const handleUpload = async (files: File[]) => {
+    const handleUpload = async (files: File[], title: string, description: string) => {
         const file = files[0];
         if (!file) return;
 
@@ -25,18 +25,25 @@ export default function UploadPage() {
                 .getPublicUrl(fileName);
 
             // 3. Save to PostgreSQL via your API
+            // We now send the TITLE and DESCRIPTION you typed in State 2
             const response = await fetch('/api/videos', {
                 method: 'POST',
                 body: JSON.stringify({
-                    title: file.name,
+                    title: title, // Use the new title
+                    description: description, // Use the new description
                     videoUrl: publicUrl
                 }),
                 headers: { 'Content-Type': 'application/json' }
             });
 
-            if (response.ok) alert("Video uploaded and saved!");
+            if (response.ok) {
+                return true; // Tell the child it worked!
+            } else {
+                throw new Error("API failed");
+            }
         } catch (error) {
             console.error("Upload error:", error);
+            throw error; // Tell the child it failed
         }
     };
 

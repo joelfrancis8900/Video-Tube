@@ -1,15 +1,17 @@
 import { NextResponse } from 'next/server';
-import db from '@/lib/db'; // Make sure this is the ONLY prisma import
+import db from '@/lib/db';
 
 export async function POST(request: Request) {
     try {
-        const { title, videoUrl } = await request.json();
+        // 1. Add "description" here to pull it from the request
+        const { title, videoUrl, description } = await request.json();
 
         const video = await db.video.create({
             data: {
                 title: title,
                 videoUrl: videoUrl,
-                userId: "temp-user-id", // Ensure this matches schema
+                description: description, // 2. Add this line to save it to the DB
+                userId: "temp-user-id",
             },
         });
 
@@ -19,8 +21,6 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: 'Failed to save' }, { status: 500 });
     }
 }
-
-
 
 export async function GET() {
     try {
