@@ -28,6 +28,9 @@ export default function Main({ onUpload }: VideoUploadProps) {
         noClick: true,
         noKeyboard: true
     });
+
+
+
     return (
         <main className="flex m-0 mx-auto max-w-5xl flex-row  bg-white pl-8 pr-8 pt-6 gap-y-8 gap-x-8 flex-wrap w-screen overflow-y-auto">
             <div

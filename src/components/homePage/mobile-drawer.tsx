@@ -36,7 +36,7 @@ export default function MobileDrawer({ isOpen, onClose }: { isOpen: boolean; onC
 
                 <div className="pb-3 pt-2.5 border-gray-200 border-b flex flex-col gap-px">
                     {/* previous classes for image second parent div */}
-                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-all transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
+                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
                         <div>
                             <Image
                                 src="/icons/icons8-home-no-white-space.svg"
@@ -51,7 +51,7 @@ export default function MobileDrawer({ isOpen, onClose }: { isOpen: boolean; onC
 
                     </div>
 
-                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-all transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
+                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
                         <div>
                             <Image
                                 src="/icons/notification-bell-svgrepo-com-space-removed.svg"
@@ -66,7 +66,7 @@ export default function MobileDrawer({ isOpen, onClose }: { isOpen: boolean; onC
 
                     </div>
 
-                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-all transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
+                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
                         <div>
                             <Image
                                 src="/icons/icons8-plus.svg"
@@ -89,7 +89,7 @@ export default function MobileDrawer({ isOpen, onClose }: { isOpen: boolean; onC
 
                 <div className="pb-3 pt-2.5 border-gray-200  flex flex-col gap-px">
 
-                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-all transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
+                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
                         <div>
                             <Image
                                 src="/icons/settings-gear-svgrepo-com.svg"
