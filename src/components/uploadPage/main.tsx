@@ -4,9 +4,10 @@ import Image from 'next/image';
 import React, { useCallback, useState } from "react";
 import { useDropzone, FileRejection, DropEvent } from "react-dropzone";
 import { Upload } from "lucide-react";
+import { supabase } from '@/lib/supabase';
 
 interface VideoUploadProps {
-    onUpload: (files: File[], title: string, description: string) => Promise<boolean | void>;
+    onUpload: (files: File[], title: string, description: string, thumbnail: string) => Promise<boolean | void>;
 }
 
 export default function Main({ onUpload }: VideoUploadProps) {
@@ -15,6 +16,8 @@ export default function Main({ onUpload }: VideoUploadProps) {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+
+    const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
         if (acceptedFiles.length > 0) {
@@ -39,6 +42,34 @@ export default function Main({ onUpload }: VideoUploadProps) {
         setTitle("");
         setDescription("");
         setErrorMessage("");
+    };
+
+    const [thumbUrl, setThumbUrl] = useState(""); // We save the LINK, not just the file
+
+    const handleThumbChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setThumbnailFile(file);
+        // Direct Upload to Supabase Storage
+        const cleanFileName = file.name.replace(/[^a-zA-Z0-9.]/g, "-");
+        const fileName = `${Date.now()}-${cleanFileName}`;
+        const { data, error } = await supabase.storage
+            .from('thumbnails')
+            .upload(fileName, file);
+
+        if (error) {
+            alert("Thumbnail upload failed: " + error.message);
+            return;
+        }
+
+        // Get the public URL and save it in state
+        const { data: { publicUrl } } = supabase.storage
+            .from('thumbnails')
+            .getPublicUrl(fileName);
+
+        setThumbUrl(publicUrl); // Save the link for later
+        alert("Thumbnail ready!");
     };
 
     return (
@@ -98,9 +129,19 @@ export default function Main({ onUpload }: VideoUploadProps) {
                     {/* Thumbnail Placeholder */}
                     <div className="flex flex-col gap-2">
                         <label className="font-bold text-sm text-gray-600">Thumbnail</label>
-                        <div className="border-2 border-dashed border-gray-300 rounded-md p-8 text-center bg-gray-50 cursor-pointer">
-                            <p className="text-gray-500 text-sm">Click to upload a thumbnail</p>
-                        </div>
+                        <label className="border-2 border-dashed border-gray-300 rounded-md p-8 text-center bg-gray-50 cursor-pointer hover:border-blue-500 transition-all">
+                            {thumbnailFile ? (
+                                <p className="text-blue-600 font-medium">Selected: {thumbnailFile.name}</p>
+                            ) : (
+                                <p className="text-gray-500 text-sm">Click to upload a thumbnail image</p>
+                            )}
+                            <input
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={handleThumbChange} // This triggers the Supabase upload
+                            />
+                        </label>
                     </div>
 
                     {/* Bottom Buttons */}
@@ -110,10 +151,16 @@ export default function Main({ onUpload }: VideoUploadProps) {
                         </button>
                         <button
                             onClick={async () => {
-                                if (!selectedFile) return; // Safety check
+                                // 1. THE SAFETY GUARD:
+                                // If there is no file, stop right here and don't run the rest of the code.
+                                if (!selectedFile) {
+                                    alert("Please select a video file first!");
+                                    return;
+                                }
+
                                 try {
-                                    // Now the computer knows onUpload expects 3 arguments!
-                                    await onUpload([selectedFile], title, description);
+                                    // Now TypeScript knows 'selectedFile' is definitely a File and NOT null.
+                                    await onUpload([selectedFile], title, description, thumbUrl);
                                     setStatus("success");
                                 } catch (err) {
                                     setStatus("error");

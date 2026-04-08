@@ -6,44 +6,35 @@ import Main from '@/components/uploadPage/main';
 
 export default function UploadPage() {
 
-    const handleUpload = async (files: File[], title: string, description: string) => {
-        const file = files[0];
-        if (!file) return;
-
+    const handleUpload = async (files: File[], title: string, description: string, thumbnail: string) => {
         try {
-            // 1. Upload to Supabase Storage
-            const fileName = `${Date.now()}-${file.name}`;
-            const { data, error: storageError } = await supabase.storage
-                .from('videos')
-                .upload(fileName, file);
+            // 1. Upload Video to 'videos' bucket (We still need to do this)
+            const videoName = `${Date.now()}-video-${files[0].name}`;
+            await supabase.storage.from('videos').upload(videoName, files[0]);
+            const { data: { publicUrl: videoUrl } } = supabase.storage.from('videos').getPublicUrl(videoName);
 
-            if (storageError) throw storageError;
+            // 2. SKIP THE THUMBNAIL UPLOAD
+            // We don't use supabase.storage here because the thumbnail was 
+            // already uploaded in Main.tsx. 'thumbnail' is now the URL.
 
-            // 2. Get Public URL
-            const { data: { publicUrl } } = supabase.storage
-                .from('videos')
-                .getPublicUrl(fileName);
-
-            // 3. Save to PostgreSQL via your API
-            // We now send the TITLE and DESCRIPTION you typed in State 2
+            // 3. Save everything to your API
             const response = await fetch('/api/videos', {
                 method: 'POST',
                 body: JSON.stringify({
-                    title: title, // Use the new title
-                    description: description, // Use the new description
-                    videoUrl: publicUrl
+                    title,
+                    description,
+                    videoUrl,
+                    thumbnailUrl: thumbnail // Ensure this matches your Prisma schema name!
                 }),
                 headers: { 'Content-Type': 'application/json' }
             });
 
-            if (response.ok) {
-                return true; // Tell the child it worked!
-            } else {
-                throw new Error("API failed");
-            }
+            if (!response.ok) throw new Error("Failed to save to database");
+
+            return true;
         } catch (error) {
-            console.error("Upload error:", error);
-            throw error; // Tell the child it failed
+            console.error(error);
+            throw error;
         }
     };
 

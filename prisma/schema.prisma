@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  // The 'url' line is removed from here!
 }
 
 model Video {
@@ -14,6 +14,7 @@ model Video {
   videoUrl    String
   userId      String
   createdAt   DateTime  @default(now())
+  thumbnailUrl String?
   comments    Comment[]
 }
 

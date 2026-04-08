@@ -3,14 +3,15 @@ import db from '@/lib/db';
 
 export async function POST(request: Request) {
     try {
-        // 1. Add "description" here to pull it from the request
-        const { title, videoUrl, description } = await request.json();
+        // Look at this line! We added 'thumbnailUrl' here:
+        const { title, videoUrl, description, thumbnailUrl } = await request.json();
 
         const video = await db.video.create({
             data: {
                 title: title,
                 videoUrl: videoUrl,
-                description: description, // 2. Add this line to save it to the DB
+                description: description,
+                thumbnailUrl: thumbnailUrl, // Now this variable exists!
                 userId: "temp-user-id",
             },
         });
