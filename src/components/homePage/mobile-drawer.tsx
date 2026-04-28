@@ -1,0 +1,108 @@
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+
+
+// Added isUniversal to the props definition
+export default function MobileDrawer({
+    isOpen,
+    onClose,
+    isUniversal = false
+}: {
+    isOpen: boolean;
+    onClose: () => void;
+    isUniversal?: boolean
+}) {
+    return (
+        /* We use a template literal to toggle 'sm:hidden' based on the isUniversal prop */
+        <div className={`fixed inset-0 z-100 ${!isUniversal ? 'sm:hidden' : ''} transition-all duration-300 ${isOpen
+            ? 'opacity-100 pointer-events-auto'
+            : 'opacity-0 pointer-events-none'
+            }`}>
+
+            {/* 1. Dark Backdrop Overlay */}
+            <div
+                className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}
+                onClick={onClose}
+            />
+
+            <aside className={`absolute top-0 left-0 h-full w-60 bg-white border-r border-gray-200 shadow-xl transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+                <div className="flex items-center h-19 px-6.75 border-b border-gray-200">
+                    <button
+                        onClick={onClose}
+                        className="p-2 -ml-2 hover:bg-gray-100 rounded-full transition-colors"
+                    >
+                        <Image
+                            src="/icons/menu-svgrepo-com-space-removed.svg"
+                            alt="Close menu"
+                            width={18}
+                            height={18}
+                        />
+                    </button>
+                    <div className="ml-6.75 text-2xl text-red-600">VideoTube</div>
+                </div>
+
+                <div className="pb-3 pt-2.5 border-gray-200 border-b flex flex-col gap-px">
+                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
+                        <div>
+                            <Image
+                                src="/icons/icons8-home-no-white-space.svg"
+                                alt="Home icon"
+                                width={18}
+                                height={18}
+                            />
+                        </div>
+                        {/* <div className={'text-base'}>
+                            Home
+                        </div> */}
+                        <Link href="/" className={'text-base'}>Home</Link>
+                    </div>
+
+                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
+                        <div>
+                            <Image
+                                src="/icons/notification-bell-svgrepo-com-space-removed.svg"
+                                alt="Notification bell icon"
+                                width={18}
+                                height={18}
+                            />
+                        </div>
+                        <div className={'text-base'}>
+                            Notifications
+                        </div>
+                    </div>
+
+                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
+                        <div>
+                            <Image
+                                src="/icons/icons8-plus.svg"
+                                alt="Plus icon for upload"
+                                width={18}
+                                height={18}
+                            />
+                        </div>
+                        <div className={'text-base'}>
+                            Upload
+                        </div>
+                    </div>
+                </div>
+
+                <div className="pb-3 pt-2.5 border-gray-200  flex flex-col gap-px">
+                    <div className={'flex cursor-pointer rounded-lg pt-2.75 pb-2.75 transition-colors duration-300 hover:bg-gray-100 flex-row items-center gap-6.25 pl-6.25'}>
+                        <div>
+                            <Image
+                                src="/icons/settings-gear-svgrepo-com.svg"
+                                alt="Settings icon"
+                                width={18}
+                                height={18}
+                            />
+                        </div>
+                        <div className={'text-base'}>
+                            Settings
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    );
+}
