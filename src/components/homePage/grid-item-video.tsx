@@ -1,11 +1,9 @@
 'use client';
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation'; // Assuming you're using Next.js router
 
 export default function GridItemVideo({ video }: any) {
     const videoRef = useRef<HTMLVideoElement>(null);
-    const router = useRouter();
     const [isHovering, setIsHovering] = useState(false);
     const [progress, setProgress] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
@@ -39,6 +37,7 @@ export default function GridItemVideo({ video }: any) {
     };
 
     const handleScrub = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.stopPropagation();
         const seekTime = (parseFloat(e.target.value) / 100) * duration;
         if (videoRef.current) {
             videoRef.current.currentTime = seekTime;
@@ -46,21 +45,16 @@ export default function GridItemVideo({ video }: any) {
         }
     };
 
-    // --- NEW: Prevent the click from reaching the parent/Link ---
-    const handleControlsClick = (e: React.MouseEvent) => {
-        e.stopPropagation();
-    };
-
     return (
         <div
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            onClick={() => router.push(`/watch/${video.id}`)} // Or whatever your navigation logic is
-            className="relative aspect-video rounded-xl overflow-hidden bg-black group cursor-pointer"
+            // REMOVED: router.push (The parent Link handles this)
+            className="relative aspect-video rounded-xl overflow-hidden bg-black group select-none"
         >
             {/* Thumbnail Layer */}
             <div className={`absolute inset-0 z-10 transition-opacity duration-300 ${isHovering ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                <Image src={video.thumbnailUrl} alt="thumbnail" fill className="object-cover" />
+                <Image src={video.thumbnailUrl} alt="thumbnail" fill className="object-cover" draggable={false} />
             </div>
 
             {/* Video Layer */}
@@ -76,14 +70,12 @@ export default function GridItemVideo({ video }: any) {
 
             {/* Custom Scrubber Overlay */}
             {isHovering && (
-                <button
-                    type="button"
+                <div
                     onClick={(e) => {
                         e.stopPropagation();
                         e.preventDefault();
                     }}
-                    onMouseDown={(e) => e.stopPropagation()}
-                    className="absolute bottom-0 left-0 right-0 z-20 p-2 bg-gradient-to-t from-black/70 to-transparent cursor-default border-none outline-none"
+                    className="absolute bottom-0 left-0 right-0 z-20 p-2 bg-gradient-to-t from-black/70 to-transparent cursor-default"
                 >
                     <div className="flex items-center gap-2">
                         <input
@@ -92,23 +84,21 @@ export default function GridItemVideo({ video }: any) {
                             max="100"
                             value={isNaN(progress) ? 0 : progress}
                             onChange={handleScrub}
+                            // This is the fix for dragging:
+                            onPointerDown={(e) => e.stopPropagation()}
+                            onMouseDown={(e) => e.stopPropagation()}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 e.preventDefault();
                             }}
-                            onMouseDown={(e) => e.stopPropagation()}
                             className="accent-red-600 h-1 flex-grow cursor-pointer appearance-none bg-white/30 rounded-lg overflow-hidden"
                         />
-                        <span className="text-white text-[10px] font-medium whitespace-nowrap select-none">
+                        <span className="text-white text-[10px] font-medium whitespace-nowrap">
                             {formatTime(currentTime)} / {formatTime(duration)}
                         </span>
                     </div>
-                </button>
+                </div>
             )}
-
-
-
-
 
             <style jsx>{`
         input[type='range']::-webkit-slider-thumb {
