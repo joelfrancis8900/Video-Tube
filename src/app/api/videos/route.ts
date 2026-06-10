@@ -49,6 +49,11 @@ export async function GET() {
 
         return NextResponse.json(videos);
     } catch (error) {
-        return NextResponse.json({ error: 'Failed to fetch' }, { status: 500 });
+        console.error("REAL DB ERROR:", error);
+
+        return NextResponse.json(
+            { error: error instanceof Error ? error.message : String(error) },
+            { status: 500 }
+        );
     }
 }
